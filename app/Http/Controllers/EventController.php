@@ -76,7 +76,13 @@ class EventController extends Controller
     {
         // dd(User::all());
         // return "hello user";
-        $events = Event::whereDate('date', '>=', today())->latest()->paginate(10);
+        // $events = Event::whereDate('date', '>=', today())->latest()->paginate(10);
+        $events = Event::whereDate('date', '>=', today())
+            ->with(['registrations' => function ($q) {
+                $q->where('user_id', auth()->id());
+            }])
+            ->latest()
+            ->paginate(10);
         return view('events.index', compact('events'));
     }
 }

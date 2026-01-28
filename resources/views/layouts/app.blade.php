@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Event Management') }}</title>
+    <title>
+        {{ config('app.name', 'Event Management') }}
+        @hasSection('title')
+            | @yield('title')
+        @endif
+    </title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,12 +19,25 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     {{-- favicon --}}
     <link rel="icon" type="image/png" href="{{ asset('favicon/logo.png') }}">
 
+    {{-- font-awesome cdn --}}
+    {{-- <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+      integrity="sha512-KP1jQMuGZiJgq4CkfjF4WkX0t6jFq/6nhyGJcS/UATsFKG1XtvJzKX4Hq8G1APj43JLGGSt7FqReJ9bBT8Wnig==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
+
     <!-- Summernote CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet"> --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
 
 </head>
 
@@ -41,7 +59,6 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         @if (session('success'))
@@ -66,6 +83,8 @@
             });
         @endif
 
+
+
         function confirmDelete(event) {
             event.preventDefault();
             Swal.fire({
@@ -74,6 +93,8 @@
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "Yes, delete it!",
+                confirmButtonColor: "#72C02C",
+                cancelButtonColor: "#d33",
             }).then((result) => {
                 if (result.isConfirmed) {
                     event.target.form.submit();
@@ -81,12 +102,12 @@
             });
         }
     </script>
-
+    {{-- 
     <!-- jQuery (Required for Summernote) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Summernote JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script> --}}
 
 </body>
 

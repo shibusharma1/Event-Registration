@@ -29,9 +29,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (auth()->user()->role != 0) {
-            return redirect()->route('events.index');
+            return redirect()->route('events.index')->with('success', 'Welcome back, ' . explode(' ',auth()->user()->name)[0]);
         } else {
-            return redirect()->route('admin.events.index');
+            return redirect()->route('admin.events.index')->with('success', 'Welcome back, ' . explode(' ',auth()->user()->name)[0]);
         }
     }
 
@@ -46,6 +46,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', value: 'Logged Out Successfully');
     }
 }

@@ -1,4 +1,4 @@
-<div class="min-h-screen p-12 flex items-center justify-center bg-gradient-to-br from-[#72C02C]/40 to-[#72C02C]/10">
+<div class="min-h-[calc(100vh-80px)] p-12 flex items-center justify-center bg-gradient-to-br from-[#72C02C]/40 to-[#72C02C]/10">
 
     <div class="bg-white max-w-lg w-full mx-4 shadow-2xl border border-[#72C02C]/40 rounded-xl p-4 text-center">
 

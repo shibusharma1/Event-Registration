@@ -1,3 +1,4 @@
+@section('title', 'Error 404')
 <x-app-layout>
     @include('errors.template', [
         'code' => 404,

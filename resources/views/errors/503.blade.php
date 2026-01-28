@@ -1,3 +1,4 @@
+@section('title', 'Error 503')
 <x-app-layout>
     @include('errors.template', [
         'code' => 503,

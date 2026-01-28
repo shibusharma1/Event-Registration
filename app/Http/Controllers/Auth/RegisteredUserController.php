@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+          return redirect()->route('events.index')->with('success', 'Welcome,  ' . explode(' ',auth()->user()->name)[0] );
     }
 }

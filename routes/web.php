@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegistrationController;
 
+require __DIR__ . '/auth.php';
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -19,26 +21,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
-
-
-
 
 Route::middleware(['auth'])->group(function () {
-
-    // User Events
-    Route::middleware(['role:1'])->group(function () {
-
-        Route::get('/', [EventController::class, 'userEvents'])->name('events.index');
-    });
-
-    Route::middleware(['throttle:60,1'])->group(function () {
-        Route::post('/events/{event}/register', [RegistrationController::class, 'register'])->name('events.register');
-        Route::delete('/events/{event}/cancel', [RegistrationController::class, 'cancel'])->name('events.cancel');
-    });
 
     // Admin Routes
     Route::middleware(['role:0'])->prefix('admin')->name('admin.')->group(function () {
         Route::resource('events', EventController::class)->except(['show']);
     });
+
+    // User Events
+    Route::middleware(['role:1'])->group(function () {
+        Route::get('/', [EventController::class, 'userEvents'])->name('events.index');
+    });
+
+    Route::middleware(['throttle:5,1'])->group(function () {
+        Route::post('/events/{event}/register', [RegistrationController::class, 'register'])->name('events.register');
+        Route::delete('/events/{event}/cancel', [RegistrationController::class, 'cancel'])->name('events.cancel');
+    });
+});
+
+// Fallback route
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
 });
