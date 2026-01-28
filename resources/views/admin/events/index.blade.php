@@ -7,6 +7,8 @@
                 <i class="fa-solid fa-plus"></i> Add Event
             </a>
         </div>
+        
+        <x-event-filter :action="route('admin.events.index')" :resetUrl="route('admin.events.index')" />
 
         <table class="w-full border rounded">
             <thead class="bg-gray-100">

@@ -25,15 +25,8 @@
     {{-- favicon --}}
     <link rel="icon" type="image/png" href="{{ asset('favicon/logo.png') }}">
 
-    {{-- font-awesome cdn --}}
-    {{-- <link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-      integrity="sha512-KP1jQMuGZiJgq4CkfjF4WkX0t6jFq/6nhyGJcS/UATsFKG1XtvJzKX4Hq8G1APj43JLGGSt7FqReJ9bBT8Wnig==" 
-      crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-
-
     <!-- Summernote CSS -->
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -102,13 +95,15 @@
             });
         }
     </script>
-    {{-- 
+
     <!-- jQuery (Required for Summernote) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Summernote JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 
+    <!-- Summernote Init Stack -->
+    @stack('scripts')
 </body>
 
 </html>

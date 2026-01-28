@@ -8,8 +8,9 @@
     <label class="block mb-1">Description</label>
 
     <textarea id="summernote" name="description" class="w-full border rounded p-2">
-        {{ old('description', $event->description ?? '') }}
-    </textarea>
+    {!! old('description', $event->description ?? '') !!}
+</textarea>
+
 </div>
 
 <div class="mb-4">
@@ -24,13 +25,23 @@
         class="w-full border rounded p-2" required>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
-            placeholder: 'Write event description...',
-            height: 200,
-            minHeight: 100,
-            maxHeight: 400
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Write event description...',
+                height: 220,
+                minHeight: 120,
+                maxHeight: 400,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
         });
-    });
-</script>
+    </script>
+@endpush
