@@ -21,7 +21,7 @@
 
 <div class="mb-4">
     <label class="block mb-1">Max Participants</label>
-    <input type="number" name="max_participants" value="{{ old('max_participants', $event->max_participants ?? '') }}"
+    <input type="number" name="max_participants" value="{{ old('max_participants', $event->max_participants ?? '') }}" min="1"
         class="w-full border rounded p-2" required>
 </div>
 

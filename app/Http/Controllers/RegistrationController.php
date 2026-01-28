@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EventRegistrationMail;
+use App\Mail\EventCancellationMail;
 use App\Models\Event;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -29,6 +32,11 @@ class RegistrationController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        // Send Email
+        Mail::to(Auth::user()->email)->queue(
+            new EventRegistrationMail($event, Auth::user())
+        );
+
         return back()->with('success', 'Registered successfully');
     }
 
@@ -38,6 +46,11 @@ class RegistrationController extends Controller
             'user_id' => Auth::id(),
             'event_id' => $event->id,
         ])->delete();
+
+        // Send Email
+        Mail::to(Auth::user()->email)->queue(
+            new EventCancellationMail($event, Auth::user())
+        );
 
         return back()->with('success', 'Registration cancelled');
     }

@@ -29,9 +29,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-
+  
 </head>
 
 <body class="font-sans antialiased">
@@ -104,6 +102,7 @@
 
     <!-- Summernote Init Stack -->
     @stack('scripts')
+    
 </body>
 
 </html>
